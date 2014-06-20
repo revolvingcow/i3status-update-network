@@ -2,8 +2,8 @@
 
 # Declare some variables
 local config=$HOME'/.config/i3status/config'
-local ethernet=''
-local wireless=''
+local ethernet='none'
+local wireless='none'
 
 # Find devices
 for dev in $(ls /sys/class/net); do
