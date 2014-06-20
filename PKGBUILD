@@ -16,6 +16,5 @@ source=("git://github.com/bmallred/i3status-update-network.git#branch=master")
 sha256sums=("SKIP")
 
 package() {
-    mkdir -p "pkgdir"/usr/bin/
-    cp "$srcdir/$_pkgname"/i3status-update-network "$pkgdir"/usr/bin/
+    cp "$srcdir/$_pkgname"/i3status-update-network /usr/bin/
 }
