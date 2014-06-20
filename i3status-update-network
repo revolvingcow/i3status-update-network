@@ -1,0 +1,22 @@
+#!/bin/zsh
+
+# Declare some variables
+local config=$HOME'/.config/i3status/config'
+local ethernet=''
+local wireless=''
+
+# Find devices
+for dev in $(ls /sys/class/net); do
+    if [[ $dev[0,1] == "e" ]]; then
+        ethernet=$dev
+    elif [[ $dev[0,1] == "w" ]]; then
+        wireless=$dev
+    fi
+done
+
+# Search the configuration file and update it appropriately
+sed -e 's/^order\s*+=\s*\"ethernet.*/order += \"ethernet '$ethernet'\"/g' \
+    -e 's/^order\s*+=\s*\"wireless.*/order += \"wireless '$wireless'\"/g' \
+    -e 's/^ethernet.*/ethernet '$ethernet' {/g' \
+    -e 's/^wireless.*/wireless '$wireless' {/g' \
+    -i $config
